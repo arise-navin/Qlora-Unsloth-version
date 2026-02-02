@@ -1,0 +1,58 @@
+# =====================================
+# Model (switchable)
+# =====================================
+model_name_or_path: ""   # google/gemma-3-4b-it OR mistralai/Ministral-3-3B-Instruct-2512
+
+# =====================================
+# Dataset (fixed as requested)
+# =====================================
+dataset_path: "teknium/OpenHermes-2.5"
+dataset_text_field: "text"
+
+# =====================================
+# Output
+# =====================================
+output_dir: ""
+
+# =====================================
+# Training (RTX 4090 / 16B-ready)
+# =====================================
+num_train_epochs: 0
+per_device_train_batch_size: 0
+gradient_accumulation_steps: 0
+learning_rate: 0.0
+logging_steps: 0
+save_steps: 0
+
+# =====================================
+# QLoRA / LoRA
+# =====================================
+lora_r: 0
+lora_alpha: 0
+lora_dropout: 0.0
+
+# Works for Gemma, Mistral, LLaMA-class models
+target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# =====================================
+# Quantization (QLoRA – 16B safe)
+# =====================================
+load_in_4bit: true
+bnb_4bit_quant_type: "nf4"
+bnb_4bit_use_double_quant: true
+bnb_4bit_compute_dtype: "float16"
+
+# =====================================
+# Misc
+# =====================================
+max_seq_length: 0
+gradient_checkpointing: true
+fp16: true
+bf16: false
